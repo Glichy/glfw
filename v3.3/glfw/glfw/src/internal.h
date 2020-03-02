@@ -1,5 +1,5 @@
 //========================================================================
-// GLFW 3.3 - www.glfw.org
+// GLFW 3.4 - www.glfw.org
 //------------------------------------------------------------------------
 // Copyright (c) 2002-2006 Marcus Geelnard
 // Copyright (c) 2006-2019 Camilla Löwy <elmindreda@glfw.org>
@@ -266,6 +266,7 @@ struct _GLFWwndconfig
     GLFWbool      maximized;
     GLFWbool      centerCursor;
     GLFWbool      focusOnShow;
+    GLFWbool      mousePassthru;
     GLFWbool      scaleToMonitor;
     struct {
         GLFWbool  retina;
@@ -275,6 +276,9 @@ struct _GLFWwndconfig
         char      className[256];
         char      instanceName[256];
     } x11;
+    struct {
+        GLFWbool  keymenu;
+    } win32;
 };
 
 // Context configuration
@@ -373,6 +377,7 @@ struct _GLFWwindow
     GLFWbool            autoIconify;
     GLFWbool            floating;
     GLFWbool            focusOnShow;
+    GLFWbool            mousePassthru;
     GLFWbool            shouldClose;
     void*               userPointer;
     GLFWvidmode         videoMode;
@@ -671,6 +676,7 @@ float _glfwPlatformGetWindowOpacity(_GLFWwindow* window);
 void _glfwPlatformSetWindowResizable(_GLFWwindow* window, GLFWbool enabled);
 void _glfwPlatformSetWindowDecorated(_GLFWwindow* window, GLFWbool enabled);
 void _glfwPlatformSetWindowFloating(_GLFWwindow* window, GLFWbool enabled);
+void _glfwPlatformSetWindowMousePassthru(_GLFWwindow* window, GLFWbool enabled);
 void _glfwPlatformSetWindowOpacity(_GLFWwindow* window, float opacity);
 
 void _glfwPlatformPollEvents(void);
